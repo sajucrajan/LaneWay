@@ -6,7 +6,7 @@
 
 ---
 
-## Current State (v8.6)
+## Current State (v9.0)
 
 LaneWay is a fully-featured Gantt chart and project timeline planner. What's already built:
 
@@ -22,6 +22,8 @@ LaneWay is a fully-featured Gantt chart and project timeline planner. What's alr
 - Auto-save to localStorage with backup nudge
 - Live stats bar, column resizing, row height adjustment
 - Demo plans seeded on first load
+- QR code and compressed text sharing (share plans via code or QR image)
+- Import from shared code or QR image upload
 
 ---
 
@@ -53,16 +55,24 @@ The sharing solution that stays true to the single-file philosophy. No server, n
 - The exported file is fully functional — recipient can edit, re-export, or import into their own LaneWay
 - Option to export as **read-only** (toolbar hidden, editing disabled) for stakeholder distribution
 
-### 1.3 Compressed Plan Sharing (Text-Based)
-**Priority: High | Effort: 1-2 days**
+### 1.3 QR Code & Compressed Text Sharing
+**Priority: High | Effort: 2-3 days**
 
-For quick sharing when sending a file isn't convenient.
+Share plans between users without needing a server, hosting, or any URL. Works with the local HTML file.
 
-- "Copy plan as text" — LZ-compresses the plan JSON into a short base64 string
-- Recipient pastes the string into an "Import from text" field
-- Works via any text channel: Slack, email, Teams, SMS
-- QR code generation for small/medium plans (< 3KB compressed) — scan from phone to transfer
-- Clipboard paste detection: if compressed plan data is on clipboard, offer to import on launch
+- **"Share" button** in the toolbar opens a sharing modal
+- LZ-compresses the plan JSON into a compact text string
+- **QR code** generated from the compressed string — recipient scans it with their phone or a QR reader to get the text
+- **"Copy as text"** button — copies the compressed string to clipboard for pasting into Slack, email, Teams, or any chat
+- **"Import from text"** field in the menu — recipient pastes the compressed string and the plan loads
+- **"Download QR"** button — saves the QR code as a PNG image for embedding in emails, documents, or presentations
+- **Size handling:**
+  - Small/medium plans (1-5 projects): fits in a single QR code (~2-3KB compressed)
+  - Larger plans: QR code not available, but "Copy as text" always works regardless of size
+  - Size indicator shows compressed size and whether QR is possible
+- **No hosting or URL required** — works entirely offline, from a local `file://` path
+- Both sender and recipient just need a copy of the LaneWay HTML file
+- Clipboard paste detection: if compressed plan data is on clipboard when LaneWay opens, offer to import
 
 ### 1.4 Command Palette (Ctrl+K / Cmd+K)
 **Priority: High | Effort: 2-3 days**

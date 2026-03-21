@@ -4,6 +4,10 @@
 
 ![LaneWay Screenshot](screenshot.png)
 
+[![Live Demo](https://img.shields.io/badge/▶%20Try%20Live%20Demo-4ade80?style=for-the-badge)](https://sajucrajan.github.io/LaneWay/)
+[![GitHub](https://img.shields.io/badge/GitHub-sajucrajan%2FLaneWay-1E3A5F?style=for-the-badge&logo=github)](https://github.com/sajucrajan/LaneWay)
+[![License: GNU GPL v3](https://img.shields.io/badge/License-GPLv3-a5b4fc?style=for-the-badge)](https://github.com/sajucrajan/LaneWay/blob/main/LICENSE)
+
 ---
 
 ## Table of Contents
@@ -48,9 +52,16 @@ Everything is saved automatically to your browser's local storage. Plans can be 
 
 ## Quick Start
 
-1. **Download** `project_timeline_v8.5.html` (or the latest version)
+### Option A — Try it instantly (no download)
+👉 **[https://sajucrajan.github.io/LaneWay/](https://sajucrajan.github.io/LaneWay/)**
+Open in any modern browser. Two demo plans are pre-loaded. Works immediately — no sign-up, no install.
+
+### Option B — Download and run locally
+1. **Download** `LaneWay_v9.0.html` from the [releases page](https://github.com/sajucrajan/LaneWay/releases)
 2. **Open it** in Chrome, Firefox, Edge or Safari — double-click the file, or drag it into a browser tab
-3. **Start planning** — two example plans are pre-loaded across two tabs to help you explore the interface
+3. **Start planning** — your work saves automatically to that browser
+
+> **Tip:** The downloaded file works fully offline. Your data is stored locally and never leaves your machine.
 
 That's it. No npm, no webpack, no Docker.
 
@@ -524,7 +535,7 @@ python3 -m http.server 8080
 # Node.js (npx, no install needed)
 npx serve .
 
-# Then open: http://localhost:8080/project_timeline_v8.5.html
+# Then open: http://localhost:8080/project_timeline_v9.0.html
 ```
 
 ### Option B — GitHub Pages
@@ -532,7 +543,7 @@ npx serve .
 1. Fork this repository
 2. Go to **Settings → Pages**
 3. Set source to `main` branch, root folder
-4. Access at `https://yourusername.github.io/laneway/project_timeline_v8.5.html`
+4. Access at `https://sajucrajan.github.io/LaneWay/`
 
 ### Option C — Any static host
 
@@ -550,14 +561,20 @@ Copy the file to a shared network drive and open it directly. Works offline afte
 
 Contributions are welcome. Since the entire app is one HTML file with no build step, the contribution workflow is unusually simple.
 
+### How LaneWay Was Built
+
+LaneWay was built entirely using [Claude](https://claude.ai) (Anthropic's AI assistant) — every line of code, every feature, and every architectural decision was generated through an iterative conversation between a product manager and an AI. No traditional coding background was required to create it.
+
+This is itself part of the philosophy: if a PM frustrated by project tooling can describe what they need and have it built in real time, the barrier to building useful software has genuinely changed.
+
 ### Getting Started
 
 ```bash
 git clone https://github.com/sajucrajan/LaneWay.git
 cd laneway
-open project_timeline_v8.5.html   # macOS
-# or: start project_timeline_v8.5.html  (Windows)
-# or: xdg-open project_timeline_v8.5.html  (Linux)
+open project_timeline_v9.0.html   # macOS
+# or: start project_timeline_v9.0.html  (Windows)
+# or: xdg-open project_timeline_v9.0.html  (Linux)
 ```
 
 Edit the HTML file directly in your editor. Reload the browser tab to see changes. That's the entire dev loop.
@@ -567,6 +584,7 @@ Edit the HTML file directly in your editor. Reload the browser tab to see change
 We use minor versions for changes that don't break the data model and patch versions for bug fixes:
 
 ```
+v9.0   — QR code & compressed text sharing, import from shared code/QR image
 v8.5   — horizontal-only zoom, double-click column reset
 v8.4   — vertical zoom removal
 v8.3   — demo tabs, clear canvas, footer
@@ -607,43 +625,17 @@ See [`ROADMAP.md`](ROADMAP.md) for the prioritised list of remaining features. T
 
 ## Roadmap
 
-The full roadmap is in [`ROADMAP.md`](ROADMAP.md). High-level summary:
+The full roadmap is in [`ROADMAP.md`](ROADMAP.md). Here's the high-level release plan:
 
-### v9.0 — The Planning Release (next)
-- Dependency arrows with auto-cascade scheduling
-- Export as standalone HTML (share a plan as a single file — recipient just opens it)
-- Compressed plan sharing (copy/paste text string via Slack, email, etc.)
-- Command palette (Ctrl+K) for power users
-- AI plan generator (optional, bring your own API key)
+| Release | Theme | Headline features |
+|---|---|---|
+| **v9.0** | The Planning Release | Dependency arrows + auto-scheduling, Export as standalone HTML, QR/link sharing, Command palette (Ctrl+K), AI plan generator |
+| **v10.0** | The Intelligence Release | What-if scenarios, Baseline/snapshot comparison, Critical path, One-click status report, Progress sparklines |
+| **v11.0** | The Platform Release | Alternative views (Kanban, Calendar, Resource, Burndown), Templates library, Import from CSV/Jira/Notion, Presentation mode, Annotations |
+| **v12.0** | The Professional Release | Minimap, Custom phase types, Custom fields, Filter & search, Bulk actions, PWA / install as desktop app, Embed mode |
+| **v13.0** | The Collaboration Release | WebRTC peer-to-peer collab, Plan health dashboard, Monte Carlo simulation, i18n, Accessibility (WCAG 2.1 AA) |
 
-### v10.0 — The Intelligence Release
-- What-if scenarios (clone, modify, compare side-by-side)
-- Baseline / snapshot comparison with drift indicators
-- Critical path highlight with float/slack display
-- One-click status report generator
-- Progress history sparklines
-
-### v11.0 — The Platform Release
-- Alternative views: Kanban, Calendar, Resource/Person, Burndown
-- Built-in plan templates (Agile, Waterfall, Product Launch, etc.)
-- Import from CSV, Markdown, MS Project XML, Jira
-- Presentation / slideshow mode
-- ICS calendar export for milestones
-
-### v12.0 — The Professional Release
-- Minimap for large plans
-- Custom phase types and custom fields on segments
-- Filter, search & highlight
-- Bulk actions (multi-select + batch edit)
-- PWA / install as desktop app
-- Embed / iframe mode
-
-### v13.0 — The Collaboration Release
-- Peer-to-peer collaboration via WebRTC (no server)
-- Plan health dashboard (RAG status)
-- Monte Carlo schedule simulation
-- Multi-language support (i18n)
-- Accessibility (WCAG 2.1 AA)
+See [`ROADMAP.md`](ROADMAP.md) for full detail on each feature, priority matrix, and the "Features deliberately NOT on the roadmap" section.
 
 ---
 
@@ -688,7 +680,7 @@ LaneWay will remind you every 5 changes with a yellow banner if you haven't expo
 
 ### What localStorage Is (and Isn't)
 
-localStorage is **not** the same as a file saved to your hard drive. It lives inside the browser's internal storage and is tied to the origin (the file path or URL you opened LaneWay from). If you open `LaneWay_v8.5.html` from your Downloads folder and later move it to your Desktop, the browser treats these as different origins and your data will not carry over.
+localStorage is **not** the same as a file saved to your hard drive. It lives inside the browser's internal storage and is tied to the origin (the file path or URL you opened LaneWay from). If you open `LaneWay_v9.0.html` from your Downloads folder and later move it to your Desktop, the browser treats these as different origins and your data will not carry over.
 
 **Recommendation:** Keep LaneWay in a fixed location (e.g. a dedicated folder in your Documents) and always open it from the same path.
 
@@ -730,15 +722,17 @@ LaneWay uses the system font stack: `-apple-system, BlinkMacSystemFont, 'Segoe U
 
 ## License
 
-MIT License
+GNU General Public License v3.0
 
-Copyright (c) 2026 LaneWay Contributors
+Copyright (c) 2026 Saju Rajan
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+Full licence text: https://www.gnu.org/licenses/gpl-3.0.txt
 
 ---
 

@@ -38,17 +38,19 @@ And it fits in one file you can email to yourself.
 
 ## How It Started (And How It Kept Growing)
 
-Started small. A basic timeline with a few coloured bars. Thought "yeah that's probably enough."
+It started small. A basic timeline with a few coloured bars. "Yeah, that's probably enough."
 
 It was not enough.
 
-First it was *"the bars need labels."* Then *"can I have multiple bars in the same row?"* Then *"what about milestones?"* Then *"the milestone label is too close to the diamond, can I drag it?"* Then *"can it snap to 15-degree increments when I drag?"*
+First it was *"the bars need labels."* Then *"can there be multiple bars in the same row?"* Then *"what about milestones?"* Then *"the milestone label is too close to the diamond, can it be dragged?"* Then *"can it snap to 15-degree increments?"*
 
 Reader, it snaps to 15-degree increments.
 
-Each feature was born from a real frustration. The "business days mode" came from explaining to a stakeholder why a 30-calendar-day delivery was actually 21 working days. The multi-tab feature came from having four projects with completely different timeline widths fighting each other in the same view. The PNG export came from that first meeting where I actually used it — and someone asked "wait, what did you use to make this?" with genuine surprise.
+Each feature was born from a real frustration. Business days mode came from explaining to a stakeholder why a 30-calendar-day delivery was actually 21 working days. The multi-tab feature came from having four projects with completely different timeline widths fighting each other in the same view. The PNG export came from that first meeting where LaneWay was actually used — and someone asked "wait, what tool is this?" with genuine surprise.
 
 That question felt good. That question is why LaneWay is now open source.
+
+**A note on how it was built:** LaneWay was built entirely using Claude (Anthropic's AI) — every line of code, every feature, every design decision was a collaboration between a PM with a frustration and an AI with a text editor. No traditional coding background required. That's also part of the story.
 
 ---
 
@@ -66,7 +68,7 @@ No MS Project file that requires a licence to open. No "let me get you access to
 
 One person asked if it was from a paid tool.
 
-It was not from a paid tool. It was from a 200KB HTML file I wrote myself.
+It was not from a paid tool. It was from a 200KB HTML file — built with Claude, iterated over dozens of sessions, shaped entirely by real workflow needs.
 
 ---
 
@@ -96,7 +98,7 @@ Everything saves to browser `localStorage` automatically. Export to JSON for bac
 
 The single-file constraint was intentional. It means you can commit it to git, email it, put it on a USB drive, or open it from a network share. No infrastructure required. No "wait for IT to provision the server."
 
-The source is on GitHub, MIT licensed, and the contributing guide is literally "edit the HTML file and open a PR."
+The source is on GitHub, GNU GPL v3 licensed, and the contributing guide is literally "edit the HTML file and open a PR."
 
 ---
 

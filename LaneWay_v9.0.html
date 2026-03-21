@@ -6,7 +6,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LaneWay v8.6 — Project Timeline Planner</title>
+<title>LaneWay v9.0 — Project Timeline Planner</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -62,6 +62,7 @@ input[type=range].tb-range{accent-color:#3b82f6;cursor:pointer;border:none;backg
 .tb-sp{flex:1;min-width:2px}
 /* grid */
 .gw{flex:1;overflow:auto;position:relative;min-height:0}
+.qr-wrap canvas,.qr-wrap img{max-width:280px!important;height:auto!important}
 .app-footer{flex-shrink:0;height:32px;background:var(--nav);border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;padding:0 18px;gap:20px;font-size:11px;color:var(--txt3);user-select:none}
 .app-footer a{color:var(--txt3);text-decoration:none;transition:color .12s}
 .app-footer a:hover{color:#a5b4fc}
@@ -299,6 +300,8 @@ textarea{resize:vertical}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 const {useState,useEffect,useRef,useMemo}=React;
 const h=React.createElement;
@@ -1241,6 +1244,47 @@ function App(){
   const[sel,   setSel]   =useState(null);
   const[adding,setAdding]=useState(null);
   const[menuOpen,setMenuOpen]=useState(false);
+  const[shareOpen,setShareOpen]=useState(false);
+  const[shareCopied,setShareCopied]=useState(false);
+  const[importOpen,setImportOpen]=useState(false);
+  const[shareImportText,setShareImportText]=useState('');
+  const[importMsg2,setImportMsg2]=useState('');
+  const compressed=useMemo(()=>{
+    /* Strip default/empty values to minimize size */
+    const strip=(obj)=>{
+      if(Array.isArray(obj))return obj.map(strip);
+      if(obj&&typeof obj==='object'){
+        const out={};
+        for(const[k,v]of Object.entries(obj)){
+          if(v===''||v===false||v===null||v===undefined)continue;
+          if(k==='collapsed'&&JSON.stringify(v)==='{}')continue;
+          if(k==='mws'&&JSON.stringify(v)==='{}')continue;
+          if(k==='rowH'&&JSON.stringify(v)==='{}')continue;
+          if(k==='msRowH'&&JSON.stringify(v)==='{}')continue;
+          if(k==='phBarH'&&JSON.stringify(v)==='{}')continue;
+          if(k==='hAlign'&&v==='center')continue;
+          if(k==='vAlign'&&v==='center')continue;
+          if(k==='lane'&&v===0)continue;
+          if(k==='barH'&&v===28)continue;
+          if(k==='dx'&&v===0)continue;
+          if(k==='lw'&&v===0)continue;
+          if(k==='clw'&&v===1.5)continue;
+          out[k]=strip(v);
+        }
+        return out;
+      }
+      return obj;
+    };
+    const json=JSON.stringify(strip(data));
+    /* Try LZ-String compression with verification */
+    try{
+      const lz=LZString.compressToBase64(json);
+      const verify=LZString.decompressFromBase64(lz);
+      if(verify===json)return 'LZB:'+lz;
+    }catch(e){}
+    /* Fallback: plain Base64 (larger but guaranteed to work) */
+    return 'B64:'+btoa(unescape(encodeURIComponent(json)));
+  },[data]);
   const[modal,setModal]=useState(null);
   const[imgCapturing,setImgCapturing]=useState(false);
   const[showStats,setShowStats]=useState(true);
@@ -1267,6 +1311,8 @@ function App(){
   const mrRef  =useRef(null); // month col resize
   const rdRef  =useRef(null); // row reorder drag
   const swRef  =useRef(null); // start col resize
+  const qrRef  =useRef(null); // QR code container
+  const qrFileRef=useRef(null); // QR image upload input
   const fwRef  =useRef(null); // finish col resize
   const dragMoved=useRef(false); // true if pointer moved >4px since last mousedown
   const phaseBars=useRef([]);  // [{pid,phaseId,x1,x2}] — rebuilt each render for snap
@@ -1291,6 +1337,19 @@ function App(){
     try{saveTabData(activeTabId,data);}catch(e){}
   },[data]);
 
+  /* QR uses same compressed string (already has LZB: or B64: prefix) */
+  const qrText=compressed;
+  useEffect(()=>{
+    if(!shareOpen||!qrRef.current)return;
+    if(qrText.length>2953)return;
+    qrRef.current.innerHTML='';
+    try{
+      /* Scale QR size based on data density for reliable scanning */
+      const qrSize=qrText.length>2000?800:qrText.length>1000?600:400;
+      new QRCode(qrRef.current,{text:qrText,width:qrSize,height:qrSize,colorDark:'#000000',colorLight:'#ffffff',correctLevel:qrText.length>2331?QRCode.CorrectLevel.L:QRCode.CorrectLevel.M});
+    }catch(e){console.error('QR generation failed:',e);}
+  },[shareOpen,qrText]);
+
   /* ── keyboard shortcuts ── */
   useEffect(()=>{
     const onKey=e=>{
@@ -1299,7 +1358,7 @@ function App(){
       const inInput=tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT';
 
       /* Esc — close drawer / deselect */
-      if(e.key==='Escape'){closeDrawer();setMenuOpen(false);setModal(null);return;}
+      if(e.key==='Escape'){if(shareOpen){setShareOpen(false);setShareCopied(false);return;}if(importOpen){setImportOpen(false);setShareImportText('');setImportMsg2('');return;}closeDrawer();setMenuOpen(false);setModal(null);return;}
 
       /* Ctrl+Z undo, Ctrl+Y / Ctrl+Shift+Z redo */
       if(ctrl&&e.key==='z'&&!e.shiftKey){e.preventDefault();undo();return;}
@@ -2622,6 +2681,7 @@ function App(){
       h('span',{style:{fontSize:12,color:importMsg.startsWith('✓')?'#86efac':importMsg.startsWith('✗')?'#fca5a5':'#475569',display:'flex',alignItems:'center',gap:6,flexShrink:0,marginRight:6,transition:'color .3s'}},
         h('span',{style:{display:'inline-block',width:8,height:8,borderRadius:'50%',background:importMsg.startsWith('✗')?'#ef4444':'#22c55e',flexShrink:0}}),
         importMsg||'Saved to browser'),
+      h('button',{className:'tb-btn',onClick:()=>setShareOpen(true),title:'Share this plan',style:{fontSize:13}},'🔗 Share'),
       h('button',{className:'tb-btn',title:'Toggle stats bar',
         onClick:()=>setShowStats(s=>!s),
         style:{fontSize:14,background:showStats?'rgba(99,102,241,.18)':'transparent',
@@ -2666,7 +2726,10 @@ function App(){
           h('div',{className:'mi-body'},h('div',null,'Export as Image'),h('div',{className:'mi-sub'},'Download PNG or copy to clipboard'))),
         h('button',{className:'mi',onClick:()=>{setMenuOpen(false);importRef.current?.click();}},
           h('div',{className:'mi-ico',style:{background:'rgba(59,130,246,.12)',color:'#60a5fa'}},'⬆'),
-          h('div',{className:'mi-body'},h('div',null,'Import into tab'),h('div',{className:'mi-sub'},'Load .json into the current tab')))),
+          h('div',{className:'mi-body'},h('div',null,'Import into tab'),h('div',{className:'mi-sub'},'Load .json into the current tab'))),
+        h('button',{className:'mi',onClick:()=>{setMenuOpen(false);setShareImportText('');setImportMsg2('');setImportOpen(true);}},
+          h('div',{className:'mi-ico',style:{background:'rgba(96,165,250,.15)',color:'#60a5fa'}},'📥'),
+          h('div',{className:'mi-body'},h('div',null,'Import from shared code'),h('div',{className:'mi-sub'},'Paste text or upload QR code image')))),
       /* view resets */
       h('div',{className:'menu-section'},
         h('div',{className:'menu-lbl'},'Reset'),
@@ -3103,6 +3166,139 @@ function App(){
             background:'transparent',color:'#64748b',border:'1px solid rgba(255,255,255,.1)'}},
           'Dismiss'))),
 
+    /* ── share modal (export only) ── */
+    shareOpen&&h('div',{style:{position:'fixed',inset:0,background:'rgba(0,0,0,.6)',zIndex:9999,display:'flex',alignItems:'center',justifyContent:'center'},onClick:()=>{setShareOpen(false);setShareCopied(false);}},
+      h('div',{style:{background:'var(--bg0)',borderRadius:12,padding:24,maxWidth:520,width:'90%',maxHeight:'85vh',overflow:'auto',color:'var(--txt)',boxShadow:'0 20px 60px rgba(0,0,0,.4)'},onClick:e=>e.stopPropagation()},
+        h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:16}},
+          h('h3',{style:{margin:0,fontSize:18}},'Share Plan'),
+          h('button',{onClick:()=>{setShareOpen(false);setShareCopied(false);},style:{background:'none',border:'none',color:'var(--txt)',fontSize:20,cursor:'pointer'}},'×')),
+        h('div',{style:{fontSize:12,color:'var(--txt3)',marginBottom:16}},
+          h('p',{style:{margin:'0 0 6px'}},'Shares the current tab\'s plan only. The recipient can import it via ☰ → Import from shared code.'),
+          qrText.length>2953&&h('p',{style:{margin:0,padding:'6px 10px',borderRadius:6,background:'rgba(234,179,8,.12)',color:'#eab308'}},'This plan is too large for a QR code. Use the text code below — copy and send it via Slack, email, or any chat.')),
+        h('div',{style:{marginBottom:20}},
+          h('div',{style:{fontSize:13,fontWeight:600,marginBottom:8,color:'var(--txt2)'}},'Plan Code'),
+          h('textarea',{readOnly:true,value:compressed,style:{width:'100%',height:80,fontFamily:'monospace',fontSize:11,padding:8,borderRadius:6,border:'1px solid var(--bdr)',background:'var(--bg1)',color:'var(--txt)',resize:'none',boxSizing:'border-box'},onClick:e=>e.target.select()}),
+          h('div',{style:{display:'flex',gap:8,marginTop:8,alignItems:'center'}},
+            h('button',{className:'pbtn pbtn-p',style:{fontSize:13,padding:'6px 16px',borderRadius:6},onClick:()=>{navigator.clipboard.writeText(compressed).then(()=>{setShareCopied(true);setTimeout(()=>setShareCopied(false),2000);});}},shareCopied?'✓ Copied!':'📋 Copy Code'),
+            h('span',{style:{fontSize:11,color:'var(--txt3)'}},compressed.length+' chars'+(qrText.length<=2953?' · QR ready':' · too large for QR')))),
+        qrText.length<=2953&&h('div',{style:{textAlign:'center'}},
+          h('div',{style:{fontSize:13,fontWeight:600,marginBottom:8,color:'var(--txt2)',textAlign:'left'}},'QR Code'),
+          h('div',{ref:qrRef,style:{display:'inline-block',maxWidth:280,overflow:'hidden'},className:'qr-wrap'}),
+          h('div',{style:{marginTop:8}},
+            h('button',{className:'pbtn pbtn-p',style:{fontSize:13,padding:'6px 16px',borderRadius:6},onClick:()=>{const c=qrRef.current?.querySelector('canvas');if(c){const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='laneway-plan-qr.png';a.click();}}},'⬇ Download QR'))))),
+
+    /* ── import shared plan modal ── */
+    importOpen&&h('div',{style:{position:'fixed',inset:0,background:'rgba(0,0,0,.6)',zIndex:9999,display:'flex',alignItems:'center',justifyContent:'center'},onClick:()=>{setImportOpen(false);setShareImportText('');setImportMsg2('');}},
+      h('div',{style:{background:'var(--bg0)',borderRadius:12,padding:24,maxWidth:520,width:'90%',maxHeight:'85vh',overflow:'auto',color:'var(--txt)',boxShadow:'0 20px 60px rgba(0,0,0,.4)'},onClick:e=>e.stopPropagation()},
+        h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:16}},
+          h('h3',{style:{margin:0,fontSize:18}},'Import Shared Plan'),
+          h('button',{onClick:()=>{setImportOpen(false);setShareImportText('');setImportMsg2('');},style:{background:'none',border:'none',color:'var(--txt)',fontSize:20,cursor:'pointer'}},'×')),
+
+        /* Option 1: Paste text */
+        h('div',{style:{marginBottom:20}},
+          h('div',{style:{fontSize:13,fontWeight:600,marginBottom:8,color:'var(--txt2)'}},'Option 1: Paste Plan Code'),
+          h('textarea',{value:shareImportText,onChange:e=>{setShareImportText(e.target.value);setImportMsg2('');},placeholder:'Paste the shared plan code here...',style:{width:'100%',height:80,fontFamily:'monospace',fontSize:11,padding:8,borderRadius:6,border:'1px solid var(--bdr)',background:'var(--bg1)',color:'var(--txt)',resize:'none',boxSizing:'border-box'}}),
+          h('button',{className:'pbtn pbtn-p',disabled:!shareImportText.trim(),style:{fontSize:13,padding:'6px 16px',borderRadius:6,marginTop:8,opacity:shareImportText.trim()?1:.4},onClick:()=>{
+            try{
+              const txt=shareImportText.trim();
+              let json;
+              if(txt.startsWith('LZB:')){
+                json=LZString.decompressFromBase64(txt.slice(4));
+              }else if(txt.startsWith('B64:')){
+                json=decodeURIComponent(escape(atob(txt.slice(4))));
+              }else if(txt.startsWith('LW1:')){
+                json=LZString.decompressFromBase64(txt.slice(4));
+              }else if(txt.startsWith('{')){
+                json=txt;
+              }else{
+                /* Legacy: try all decompression methods */
+                try{json=decodeURIComponent(escape(atob(txt)));}catch(e){}
+                if(!json)json=LZString.decompressFromBase64(txt);
+                if(!json)json=LZString.decompressFromEncodedURIComponent(txt);
+              }
+              if(!json)throw new Error('Could not decode plan data. Make sure you copied the full code.');
+              const parsed=JSON.parse(json);
+              if(!parsed.projects||!Array.isArray(parsed.projects))throw new Error('Invalid plan structure — missing projects.');
+              const merged={...INIT,...parsed};
+              migrateData(merged);
+              const newId='tab-'+Date.now();
+              const newName=merged.planName||'Shared Plan';
+              const newTabs=[...tabs,{id:newId,name:newName}];
+              setTabs(newTabs);
+              try{localStorage.setItem(TABS_KEY,JSON.stringify(newTabs));}catch(e){}
+              saveTabData(newId,merged);
+              setActiveTabId(newId);
+              setHist({past:[],present:merged,future:[]});
+              setImportOpen(false);setShareImportText('');setImportMsg2('');
+              setImportMsg('✓ Plan imported into new tab: '+newName);
+            }catch(err){setImportMsg2('✗ '+err.message);}
+          }},'📥 Import from Code')),
+
+        h('hr',{style:{border:'none',borderTop:'1px solid var(--bdr)',margin:'16px 0'}}),
+
+        /* Option 2: Upload QR image */
+        h('div',null,
+          h('div',{style:{fontSize:13,fontWeight:600,marginBottom:8,color:'var(--txt2)'}},'Option 2: Upload QR Code Image'),
+          h('p',{style:{fontSize:12,color:'var(--txt3)',marginBottom:10}},'Upload a QR code PNG/JPG that was downloaded from the Share modal.'),
+          h('input',{ref:qrFileRef,type:'file',accept:'image/*',style:{display:'none'},onChange:e=>{
+            const file=e.target.files?.[0];
+            if(!file)return;
+            setImportMsg2('');
+            const img=new Image();
+            img.onload=()=>{
+              const canvas=document.createElement('canvas');
+              canvas.width=img.width;canvas.height=img.height;
+              const ctx=canvas.getContext('2d');
+              ctx.drawImage(img,0,0);
+              try{
+                if(!('BarcodeDetector' in window)){
+                  setImportMsg2('✗ QR scanning not supported in this browser. Please paste the code text instead.');
+                  return;
+                }
+                const detector=new BarcodeDetector({formats:['qr_code']});
+                detector.detect(img).then(barcodes=>{
+                  if(barcodes.length===0){setImportMsg2('✗ No QR code found in image. Try a clearer image.');return;}
+                  const raw=barcodes[0].rawValue;
+                  try{
+                    let json;
+                    if(raw.startsWith('LZB:')){
+                      json=LZString.decompressFromBase64(raw.slice(4));
+                    }else if(raw.startsWith('B64:')){
+                      json=decodeURIComponent(escape(atob(raw.slice(4))));
+                    }else if(raw.startsWith('LW1:')){
+                      json=LZString.decompressFromBase64(raw.slice(4));
+                    }else{
+                      try{json=decodeURIComponent(escape(atob(raw)));}catch(e){}
+                      if(!json)json=LZString.decompressFromBase64(raw);
+                      if(!json)json=LZString.decompressFromEncodedURIComponent(raw);
+                    }
+                    if(!json)throw new Error('Could not decompress QR data');
+                    const parsed=JSON.parse(json);
+                    if(!parsed.projects||!Array.isArray(parsed.projects))throw new Error('Invalid plan data in QR');
+                    const merged={...INIT,...parsed};
+                    migrateData(merged);
+                    const newId='tab-'+Date.now();
+                    const newName=merged.planName||'Shared Plan';
+                    const newTabs=[...tabs,{id:newId,name:newName}];
+                    setTabs(newTabs);
+                    try{localStorage.setItem(TABS_KEY,JSON.stringify(newTabs));}catch(e){}
+                    saveTabData(newId,merged);
+                    setActiveTabId(newId);
+                    setHist({past:[],present:merged,future:[]});
+                    setImportOpen(false);setShareImportText('');setImportMsg2('');
+                    setImportMsg('✓ Plan imported from QR into new tab: '+newName);
+                  }catch(err2){setImportMsg2('✗ QR decoded but data invalid: '+err2.message);}
+                }).catch(()=>{setImportMsg2('✗ Could not read QR code from image.');});
+              }catch(err){setImportMsg2('✗ Failed to process image: '+err.message);}
+            };
+            img.src=URL.createObjectURL(file);
+            e.target.value='';
+          }}),
+          h('button',{className:'pbtn pbtn-p',style:{fontSize:13,padding:'6px 16px',borderRadius:6},onClick:()=>qrFileRef.current?.click()},'📷 Upload QR Image')),
+
+        /* status message */
+        importMsg2&&h('div',{style:{marginTop:12,padding:'8px 12px',borderRadius:6,fontSize:12,fontWeight:600,background:importMsg2.startsWith('✗')?'rgba(239,68,68,.12)':'rgba(74,222,128,.12)',color:importMsg2.startsWith('✗')?'#f87171':'#4ade80'}},importMsg2))),
+
     h('footer',{className:'app-footer'},
       h('span',{style:{fontWeight:700,color:'var(--txt2)',letterSpacing:'.02em'}},'LaneWay'),
       h('span',{className:'footer-sep'},'|'),
@@ -3114,7 +3310,7 @@ function App(){
       h('span',{className:'footer-sep'},'|'),
       h('a',{href:'mailto:feedback@laneway.app'},'Send Feedback'),
       h('div',{style:{flex:1}}),
-      h('span',null,'v8.6'),
+      h('span',null,'v9.0'),
       h('span',{className:'footer-sep'},'·'),
       h('span',null,data.projects.length+' project'+(data.projects.length!==1?'s':'')),
       h('span',{className:'footer-sep'},'·'),
