@@ -553,7 +553,7 @@ Contributions are welcome. Since the entire app is one HTML file with no build s
 ### Getting Started
 
 ```bash
-git clone https://github.com/yourusername/laneway.git
+git clone https://github.com/sajucrajan/LaneWay.git
 cd laneway
 open project_timeline_v8.5.html   # macOS
 # or: start project_timeline_v8.5.html  (Windows)
@@ -644,6 +644,50 @@ The full roadmap is in [`ROADMAP.md`](ROADMAP.md). High-level summary:
 The clipboard image copy (`📋 Copy to Clipboard`) requires HTTPS or `localhost`. On plain `http://` origins it falls back silently to a PNG download.
 
 ---
+
+---
+
+## ⚠️ Data Risks & How to Protect Your Work
+
+LaneWay stores everything in **browser localStorage**. This is fast, private, and requires no server — but it comes with risks you should be aware of.
+
+### What Can Cause Data Loss
+
+| Risk | Likelihood | How to prevent |
+|---|---|---|
+| **Clearing browser site data** | Medium | Export JSON regularly |
+| **"Clear browsing data" in browser settings** | Medium | Export JSON before clearing |
+| **Browser storage quota exceeded** (~5–10MB) | Low for typical plans | Export and reimport to free space |
+| **Using a different browser or device** | High if you switch | Export on one device, import on another |
+| **Private / Incognito window** | High | localStorage is wiped when the window closes — always use a normal window |
+| **Uninstalling or resetting the browser** | Low | Export first |
+| **Operating system reinstall** | Low | Export first |
+
+### The Golden Rule
+
+> **Export your JSON backup regularly.** ☰ → Export JSON → save the file somewhere safe.
+
+LaneWay will remind you every 5 changes with a yellow banner if you haven't exported recently. The footer also shows how long ago you last exported — if it's turning yellow, export now.
+
+### What localStorage Is (and Isn't)
+
+localStorage is **not** the same as a file saved to your hard drive. It lives inside the browser's internal storage and is tied to the origin (the file path or URL you opened LaneWay from). If you open `LaneWay_v8.5.html` from your Downloads folder and later move it to your Desktop, the browser treats these as different origins and your data will not carry over.
+
+**Recommendation:** Keep LaneWay in a fixed location (e.g. a dedicated folder in your Documents) and always open it from the same path.
+
+### Recovering After Accidental Clear
+
+If you cleared your browser data:
+- Check if you have a `.json` export file — import it via ☰ → Import into tab
+- Check if the file was auto-backed up to cloud storage (if your Downloads or Documents folder syncs to iCloud, OneDrive, or Google Drive)
+- There is no server-side recovery — if no export exists, the data is gone
+
+### Coming Soon
+
+A **Shareable URL** feature is on the roadmap — this will encode the full plan into a compressed URL that you can bookmark, share, or copy to a notes app as an additional backup mechanism.
+
+---
+
 
 ## FAQ
 
