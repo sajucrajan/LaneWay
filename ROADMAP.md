@@ -43,46 +43,17 @@ The single most impactful remaining feature. Without dependencies, LaneWay is a 
 - Data model: new `deps[]` array on segments storing `{fromSegId, type, lag}`
 - Drag to create: click a segment handle, drag to another segment to connect
 
-### 1.2 Export as Standalone HTML
-**Priority: Highest | Effort: 1-3 days**
+### ~~1.2 Export as Standalone HTML~~ ✅ COMPLETE (v9.0)
 
-The sharing solution that stays true to the single-file philosophy. No server, no URL, no hosting needed.
+Shipped in v9.0. ☰ → Share as File downloads a standalone HTML copy with the plan data pre-loaded. Recipient double-clicks and sees the plan immediately. Uses `window.__LANEWAY_PRELOAD__` injection.
 
-- Click "Share as File" in the menu
-- Generates a **new copy** of the HTML file with the plan data pre-loaded in a `<script>` block
-- Recipient double-clicks the file and sees the exact plan immediately — no import step
-- File remains ~200KB + plan data (trivial size)
-- The exported file is fully functional — recipient can edit, re-export, or import into their own LaneWay
-- Option to export as **read-only** (toolbar hidden, editing disabled) for stakeholder distribution
+### ~~1.3 QR Code & Compressed Text Sharing~~ ✅ COMPLETE (v9.0)
 
-### 1.3 QR Code & Compressed Text Sharing
-**Priority: High | Effort: 2-3 days**
+Shipped in v9.0. Share plans via compressed text code or QR code image. Import via pasting code or uploading QR image. LZ-String compression with Base64 fallback, dynamic QR sizing, adaptive error correction, and default-value stripping for minimal code size.
 
-Share plans between users without needing a server, hosting, or any URL. Works with the local HTML file.
+### ~~1.4 Command Palette (Ctrl+K / Cmd+K)~~ ✅ COMPLETE (v9.0)
 
-- **"Share" button** in the toolbar opens a sharing modal
-- LZ-compresses the plan JSON into a compact text string
-- **QR code** generated from the compressed string — recipient scans it with their phone or a QR reader to get the text
-- **"Copy as text"** button — copies the compressed string to clipboard for pasting into Slack, email, Teams, or any chat
-- **"Import from text"** field in the menu — recipient pastes the compressed string and the plan loads
-- **"Download QR"** button — saves the QR code as a PNG image for embedding in emails, documents, or presentations
-- **Size handling:**
-  - Small/medium plans (1-5 projects): fits in a single QR code (~2-3KB compressed)
-  - Larger plans: QR code not available, but "Copy as text" always works regardless of size
-  - Size indicator shows compressed size and whether QR is possible
-- **No hosting or URL required** — works entirely offline, from a local `file://` path
-- Both sender and recipient just need a copy of the LaneWay HTML file
-- Clipboard paste detection: if compressed plan data is on clipboard when LaneWay opens, offer to import
-
-### 1.4 Command Palette (Ctrl+K / Cmd+K)
-**Priority: High | Effort: 2-3 days**
-
-Spotlight-style search and quick actions for power users.
-
-- Fuzzy search: jump to any project, phase, segment, or milestone by name
-- Quick actions: "add project", "export PNG", "toggle business days", "zoom to day", "go to today"
-- Recently used actions bubble to the top
-- Keyboard-first: fully navigable with arrow keys and Enter
+Shipped in v9.0. Ctrl+K / Cmd+K opens spotlight-style search. 17 static actions + all projects, phases, and milestones searchable. Arrow keys to navigate, Enter to select, Escape to close.
 
 ### 1.5 AI Plan Generator (Optional)
 **Priority: High | Effort: 3-5 days**
