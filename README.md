@@ -609,24 +609,41 @@ See [`ROADMAP.md`](ROADMAP.md) for the prioritised list of remaining features. T
 
 The full roadmap is in [`ROADMAP.md`](ROADMAP.md). High-level summary:
 
-### Phase 3 (next)
-- Dependency arrows between segments (highest value remaining feature)
-- Shareable URL via LZ-compressed hash
-- Today line extended across all rows
-- Milestone linking to segment end dates
+### v9.0 — The Planning Release (next)
+- Dependency arrows with auto-cascade scheduling
+- Export as standalone HTML (share a plan as a single file — recipient just opens it)
+- Compressed plan sharing (copy/paste text string via Slack, email, etc.)
+- Command palette (Ctrl+K) for power users
+- AI plan generator (optional, bring your own API key)
 
-### Phase 4
-- Critical path highlight
+### v10.0 — The Intelligence Release
+- What-if scenarios (clone, modify, compare side-by-side)
 - Baseline / snapshot comparison with drift indicators
-- Resource / person view (group rows by assignee)
-- Full vector SVG export
+- Critical path highlight with float/slack display
+- One-click status report generator
+- Progress history sparklines
 
-### Phase 5
-- Embed / iframe mode for Confluence and Notion
-- Plan health score (RAG indicator)
-- Custom colour themes per plan
-- Recurring segments (sprint / monthly cadence)
-- Plan notes panel
+### v11.0 — The Platform Release
+- Alternative views: Kanban, Calendar, Resource/Person, Burndown
+- Built-in plan templates (Agile, Waterfall, Product Launch, etc.)
+- Import from CSV, Markdown, MS Project XML, Jira
+- Presentation / slideshow mode
+- ICS calendar export for milestones
+
+### v12.0 — The Professional Release
+- Minimap for large plans
+- Custom phase types and custom fields on segments
+- Filter, search & highlight
+- Bulk actions (multi-select + batch edit)
+- PWA / install as desktop app
+- Embed / iframe mode
+
+### v13.0 — The Collaboration Release
+- Peer-to-peer collaboration via WebRTC (no server)
+- Plan health dashboard (RAG status)
+- Monte Carlo schedule simulation
+- Multi-language support (i18n)
+- Accessibility (WCAG 2.1 AA)
 
 ---
 
