@@ -442,93 +442,93 @@ const DEMO_TAB1={rs:'2026-01',rm:18,mw:200,mws:{},nw:220,sw:90,fw:90,collapsed:{
   hdrH:{yr:24,mo:30,wk:20,dy:20},bizDays:false,showDays:false,planName:'2026 Engineering Roadmap',
   projects:[
 /* ── Sprint Planning ── */
-  {id:'p1',name:'Platform Modernisation',fontColor:'',bold:true,italic:false,underline:false,
+  {id:'p1',name:'Platform Modernisation',bold:true,
     phases:[
-      {id:'ph1a',type:'dev',label:'Discovery & Architecture',desc:'',pct:100,color:'',fontColor:'',bold:false,italic:false,underline:false,
+      {id:'ph1a',type:'dev',label:'Discovery & Architecture',pct:100,
         start:'2026-01-05',end:'2026-01-23',
         segs:[
-          {id:'s1a1',start:'2026-01-05',end:'2026-01-16',label:'Tech Assessment',pct:100,color:'#a8c8f8',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28},
-          {id:'s1a2',start:'2026-01-12',end:'2026-01-23',label:'Architecture Design',pct:100,color:'#9db8e8',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:1,barH:28},
-          {id:'s1a3',start:'2026-01-05',end:'2026-01-23',label:'Stakeholder Alignment',pct:100,color:'#8db8f0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:2,barH:28}
+          {id:'s1a1',start:'2026-01-05',end:'2026-01-16',label:'Tech Assessment',pct:100,color:'#a8c8f8'},
+          {id:'s1a2',start:'2026-01-12',end:'2026-01-23',label:'Architecture Design',pct:100,color:'#9db8e8',lane:1},
+          {id:'s1a3',start:'2026-01-05',end:'2026-01-23',label:'Stakeholder Alignment',pct:100,color:'#8db8f0',lane:2}
         ]},
-      {id:'ph1b',type:'dev',label:'Sprint 1 – Auth & Core API',desc:'',pct:100,color:'',fontColor:'',bold:false,italic:false,underline:false,
+      {id:'ph1b',type:'dev',label:'Sprint 1 – Auth & Core API',pct:100,
         start:'2026-01-26',end:'2026-02-06',
         segs:[
-          {id:'s1b1',start:'2026-01-26',end:'2026-02-06',label:'Auth Module',pct:100,color:'#c9b8f0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28},
-          {id:'s1b2',start:'2026-01-26',end:'2026-02-06',label:'Core API v1',pct:100,color:'#b8a8e8',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:1,barH:28}
+          {id:'s1b1',start:'2026-01-26',end:'2026-02-06',label:'Auth Module',pct:100,color:'#c9b8f0'},
+          {id:'s1b2',start:'2026-01-26',end:'2026-02-06',label:'Core API v1',pct:100,color:'#b8a8e8',lane:1}
         ]},
-      {id:'ph1c',type:'dev',label:'Sprint 2 – Data Layer',desc:'',pct:80,color:'',fontColor:'',bold:false,italic:false,underline:false,
+      {id:'ph1c',type:'dev',label:'Sprint 2 – Data Layer',pct:80,
         start:'2026-02-09',end:'2026-02-27',
         segs:[
-          {id:'s1c1',start:'2026-02-09',end:'2026-02-27',label:'DB Migrations',pct:80,color:'#c9b8f0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28},
-          {id:'s1c2',start:'2026-02-16',end:'2026-02-27',label:'Redis Cache',pct:60,color:'#b8a8e8',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:1,barH:28}
+          {id:'s1c1',start:'2026-02-09',end:'2026-02-27',label:'DB Migrations',pct:80,color:'#c9b8f0'},
+          {id:'s1c2',start:'2026-02-16',end:'2026-02-27',label:'Redis Cache',pct:60,color:'#b8a8e8',lane:1}
         ]},
-      {id:'ph1d',type:'qa',label:'Integration Testing',desc:'',pct:30,color:'',fontColor:'',bold:false,italic:false,underline:false,
+      {id:'ph1d',type:'qa',label:'Integration Testing',pct:30,
         start:'2026-02-23',end:'2026-03-13',
-        segs:[{id:'s1d1',start:'2026-02-23',end:'2026-03-13',label:'API Tests',pct:30,color:'#a0d0f5',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28}]},
-      {id:'ph1e',type:'prod',label:'Go-Live',desc:'',pct:0,color:'',fontColor:'',bold:false,italic:false,underline:false,
+        segs:[{id:'s1d1',start:'2026-02-23',end:'2026-03-13',label:'API Tests',pct:30,color:'#a0d0f5'}]},
+      {id:'ph1e',type:'prod',label:'Go-Live',
         start:'2026-03-16',end:'2026-03-31',
-        segs:[{id:'s1e1',start:'2026-03-16',end:'2026-03-31',label:'Production Deploy',pct:0,color:'#a8e4b0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28}]},
+        segs:[{id:'s1e1',start:'2026-03-16',end:'2026-03-31',label:'Production Deploy',color:'#a8e4b0'}]},
     ],
     milestones:[
-      {id:'m1a',date:'2026-01-23',mtype:'checkpoint',mshape:'diamond',label:'Arch Sign-off',desc:'',color:'',fontColor:'',bold:false,italic:false,underline:false,dx:0,dy:null,ldx:null,ldy:null,lw:0,snapPhase:null},
-      {id:'m1b',date:'2026-03-31',mtype:'golive',mshape:'star',label:'Platform Live',desc:'',color:'',fontColor:'',bold:true,italic:false,underline:false,dx:0,dy:null,ldx:null,ldy:null,lw:0,snapPhase:null},
+      {id:'m1a',date:'2026-01-23',mtype:'checkpoint',mshape:'diamond',label:'Arch Sign-off'},
+      {id:'m1b',date:'2026-03-31',mtype:'golive',mshape:'star',label:'Platform Live',bold:true},
     ]},
 
   /* ── Resource Planning ── */
-  {id:'p2',name:'Mobile App v3.0',fontColor:'#60a5fa',bold:true,italic:false,underline:false,
+  {id:'p2',name:'Mobile App v3.0',fontColor:'#60a5fa',bold:true,
     phases:[
-      {id:'ph2a',type:'dev',label:'iOS Development',desc:'',pct:60,color:'#f9c6d0',fontColor:'',bold:false,italic:false,underline:false,
+      {id:'ph2a',type:'dev',label:'iOS Development',pct:60,color:'#f9c6d0',
         start:'2026-01-12',end:'2026-03-27',
         segs:[
-          {id:'s2a1',start:'2026-01-12',end:'2026-02-13',label:'UI Components (Priya)',pct:100,color:'#f9c6d0',fontColor:'#6a0020',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28},
-          {id:'s2a2',start:'2026-02-16',end:'2026-03-27',label:'Feature Dev (Priya + Tom)',pct:40,color:'#f5a0b5',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28}
+          {id:'s2a1',start:'2026-01-12',end:'2026-02-13',label:'UI Components (Priya)',pct:100,color:'#f9c6d0',fontColor:'#6a0020'},
+          {id:'s2a2',start:'2026-02-16',end:'2026-03-27',label:'Feature Dev (Priya + Tom)',pct:40,color:'#f5a0b5'}
         ]},
-      {id:'ph2b',type:'dev',label:'Android Development',desc:'',pct:45,color:'#88e0c0',fontColor:'',bold:false,italic:false,underline:false,
+      {id:'ph2b',type:'dev',label:'Android Development',pct:45,color:'#88e0c0',
         start:'2026-01-19',end:'2026-03-27',
         segs:[
-          {id:'s2b1',start:'2026-01-19',end:'2026-02-27',label:'Core Features (Dev)',pct:70,color:'#88e0c0',fontColor:'#0a3d2a',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28},
-          {id:'s2b2',start:'2026-02-23',end:'2026-03-27',label:'Polish & Bug Fix',pct:10,color:'#80d8d0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:1,barH:28}
+          {id:'s2b1',start:'2026-01-19',end:'2026-02-27',label:'Core Features (Dev)',pct:70,color:'#88e0c0',fontColor:'#0a3d2a'},
+          {id:'s2b2',start:'2026-02-23',end:'2026-03-27',label:'Polish & Bug Fix',pct:10,color:'#80d8d0',lane:1}
         ]},
-      {id:'ph2c',type:'qa',label:'QA & UAT',desc:'',pct:0,color:'',fontColor:'',bold:false,italic:false,underline:false,
+      {id:'ph2c',type:'qa',label:'QA & UAT',
         start:'2026-03-16',end:'2026-04-17',
         segs:[
-          {id:'s2c1',start:'2026-03-16',end:'2026-04-03',label:'Internal QA',pct:0,color:'#a0d0f5',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28},
-          {id:'s2c2',start:'2026-03-30',end:'2026-04-17',label:'Beta (500 users)',pct:0,color:'#90c8e8',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:1,barH:28}
+          {id:'s2c1',start:'2026-03-16',end:'2026-04-03',label:'Internal QA',color:'#a0d0f5'},
+          {id:'s2c2',start:'2026-03-30',end:'2026-04-17',label:'Beta (500 users)',color:'#90c8e8',lane:1}
         ]},
-      {id:'ph2d',type:'prod',label:'App Store Release',desc:'',pct:0,color:'',fontColor:'',bold:false,italic:false,underline:false,
+      {id:'ph2d',type:'prod',label:'App Store Release',
         start:'2026-04-20',end:'2026-04-30',
-        segs:[{id:'s2d1',start:'2026-04-20',end:'2026-04-30',label:'v3.0 Release',pct:0,color:'#a8e4b0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28}]},
+        segs:[{id:'s2d1',start:'2026-04-20',end:'2026-04-30',label:'v3.0 Release',color:'#a8e4b0'}]},
     ],
     milestones:[
-      {id:'m2a',date:'2026-02-13',mtype:'review',mshape:'circle',label:'Design Review',desc:'',color:'',fontColor:'',bold:false,italic:false,underline:false,dx:0,dy:null,ldx:null,ldy:null,lw:0,snapPhase:null},
-      {id:'m2b',date:'2026-04-30',mtype:'release',mshape:'star',label:'v3.0 Live',desc:'',color:'',fontColor:'',bold:true,italic:false,underline:false,dx:0,dy:null,ldx:null,ldy:null,lw:0,snapPhase:null},
+      {id:'m2a',date:'2026-02-13',mtype:'review',mshape:'circle',label:'Design Review'},
+      {id:'m2b',date:'2026-04-30',mtype:'release',mshape:'star',label:'v3.0 Live',bold:true},
     ]},
 
   /* ── Data & Analytics ── */
-  {id:'p3',name:'Data Warehouse Migration',fontColor:'',bold:false,italic:false,underline:false,
+  {id:'p3',name:'Data Warehouse Migration',
     phases:[
-      {id:'ph3a',type:'dev',label:'Schema Analysis',desc:'',pct:100,color:'#f0e098',fontColor:'',bold:false,italic:false,underline:false,
+      {id:'ph3a',type:'dev',label:'Schema Analysis',pct:100,color:'#f0e098',
         start:'2026-01-05',end:'2026-01-30',
-        segs:[{id:'s3a1',start:'2026-01-05',end:'2026-01-30',label:'Legacy Audit',pct:100,color:'#f0e098',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28}]},
-      {id:'ph3b',type:'dev',label:'ETL Pipeline Build',desc:'',pct:65,color:'',fontColor:'',bold:false,italic:false,underline:false,
+        segs:[{id:'s3a1',start:'2026-01-05',end:'2026-01-30',label:'Legacy Audit',pct:100,color:'#f0e098'}]},
+      {id:'ph3b',type:'dev',label:'ETL Pipeline Build',pct:65,
         start:'2026-02-02',end:'2026-03-27',
         segs:[
-          {id:'s3b1',start:'2026-02-02',end:'2026-03-13',label:'Spark ETL Jobs',pct:80,color:'#c9b8f0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28},
-          {id:'s3b2',start:'2026-02-16',end:'2026-03-27',label:'dbt Models',pct:50,color:'#b8a8e8',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:1,barH:28},
-          {id:'s3b3',start:'2026-02-02',end:'2026-02-27',label:'Data Quality Rules',pct:90,color:'#9db8e8',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:2,barH:28}
+          {id:'s3b1',start:'2026-02-02',end:'2026-03-13',label:'Spark ETL Jobs',pct:80,color:'#c9b8f0'},
+          {id:'s3b2',start:'2026-02-16',end:'2026-03-27',label:'dbt Models',pct:50,color:'#b8a8e8',lane:1},
+          {id:'s3b3',start:'2026-02-02',end:'2026-02-27',label:'Data Quality Rules',pct:90,color:'#9db8e8',lane:2}
         ]},
-      {id:'ph3c',type:'uat',label:'Data Validation',desc:'',pct:0,color:'',fontColor:'',bold:false,italic:false,underline:false,
+      {id:'ph3c',type:'uat',label:'Data Validation',
         start:'2026-03-23',end:'2026-04-17',
-        segs:[{id:'s3c1',start:'2026-03-23',end:'2026-04-17',label:'Reconciliation',pct:0,color:'#d4a0e0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28}]},
-      {id:'ph3d',type:'prod',label:'Cutover',desc:'',pct:0,color:'',fontColor:'',bold:false,italic:false,underline:false,
+        segs:[{id:'s3c1',start:'2026-03-23',end:'2026-04-17',label:'Reconciliation',color:'#d4a0e0'}]},
+      {id:'ph3d',type:'prod',label:'Cutover',
         start:'2026-04-20',end:'2026-04-30',
-        segs:[{id:'s3d1',start:'2026-04-20',end:'2026-04-30',label:'Production Cutover',pct:0,color:'#a8e4b0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28}]},
+        segs:[{id:'s3d1',start:'2026-04-20',end:'2026-04-30',label:'Production Cutover',color:'#a8e4b0'}]},
     ],
     milestones:[
-      {id:'m3a',date:'2026-01-30',mtype:'signoff',mshape:'hexagon',label:'Schema Approved',desc:'',color:'',fontColor:'',bold:false,italic:false,underline:false,dx:0,dy:null,ldx:null,ldy:null,lw:0,snapPhase:null},
-      {id:'m3b',date:'2026-03-13',mtype:'freeze',mshape:'square',label:'Code Freeze',desc:'',color:'',fontColor:'',bold:false,italic:false,underline:false,dx:0,dy:null,ldx:null,ldy:null,lw:0,snapPhase:null},
-      {id:'m3c',date:'2026-04-30',mtype:'golive',mshape:'flag',label:'DW Go-Live',desc:'',color:'',fontColor:'',bold:true,italic:false,underline:false,dx:0,dy:null,ldx:null,ldy:null,lw:0,snapPhase:null},
+      {id:'m3a',date:'2026-01-30',mtype:'signoff',mshape:'hexagon',label:'Schema Approved'},
+      {id:'m3b',date:'2026-03-13',mtype:'freeze',mshape:'square',label:'Code Freeze'},
+      {id:'m3c',date:'2026-04-30',mtype:'golive',mshape:'flag',label:'DW Go-Live',bold:true},
     ]},
 
   /* ── Marketing Campaign ── */
@@ -538,72 +538,72 @@ const DEMO_TAB1={rs:'2026-01',rm:18,mw:200,mws:{},nw:220,sw:90,fw:90,collapsed:{
 const DEMO_TAB2={rs:'2026-01',rm:12,mw:200,mws:{},nw:220,sw:90,fw:90,collapsed:{},msRowH:{},rowH:{},phBarH:{},
   hdrH:{yr:24,mo:30,wk:20,dy:20},bizDays:false,showDays:false,planName:'GTM & People Planning',
   projects:[
-{id:'p4',name:'Q2 Product Launch Campaign',fontColor:'#fb923c',bold:true,italic:false,underline:false,
+{id:'p4',name:'Q2 Product Launch Campaign',fontColor:'#fb923c',bold:true,
     phases:[
-      {id:'ph4a',type:'pilot',label:'Brand & Creative',desc:'',pct:80,color:'#f8c888',fontColor:'',bold:false,italic:false,underline:false,
+      {id:'ph4a',type:'pilot',label:'Brand & Creative',pct:80,color:'#f8c888',
         start:'2026-01-12',end:'2026-02-27',
         segs:[
-          {id:'s4a1',start:'2026-01-12',end:'2026-02-06',label:'Brand Guidelines',pct:100,color:'#f8d888',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28},
-          {id:'s4a2',start:'2026-01-26',end:'2026-02-27',label:'Ad Creative',pct:60,color:'#f8c888',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:1,barH:28},
-          {id:'s4a3',start:'2026-01-19',end:'2026-02-13',label:'Video Production',pct:70,color:'#f8b888',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:2,barH:28}
+          {id:'s4a1',start:'2026-01-12',end:'2026-02-06',label:'Brand Guidelines',pct:100,color:'#f8d888'},
+          {id:'s4a2',start:'2026-01-26',end:'2026-02-27',label:'Ad Creative',pct:60,color:'#f8c888',lane:1},
+          {id:'s4a3',start:'2026-01-19',end:'2026-02-13',label:'Video Production',pct:70,color:'#f8b888',lane:2}
         ]},
-      {id:'ph4b',type:'dev',label:'Landing Pages & SEO',desc:'',pct:40,color:'',fontColor:'',bold:false,italic:false,underline:false,
+      {id:'ph4b',type:'dev',label:'Landing Pages & SEO',pct:40,
         start:'2026-02-09',end:'2026-03-20',
-        segs:[{id:'s4b1',start:'2026-02-09',end:'2026-03-20',label:'Landing Pages',pct:40,color:'#a8c8f8',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28}]},
-      {id:'ph4c',type:'uat',label:'Press & Analyst Briefings',desc:'',pct:0,color:'#e8a4c8',fontColor:'',bold:false,italic:false,underline:false,
+        segs:[{id:'s4b1',start:'2026-02-09',end:'2026-03-20',label:'Landing Pages',pct:40,color:'#a8c8f8'}]},
+      {id:'ph4c',type:'uat',label:'Press & Analyst Briefings',color:'#e8a4c8',
         start:'2026-03-23',end:'2026-04-10',
-        segs:[{id:'s4c1',start:'2026-03-23',end:'2026-04-10',label:'Analyst Briefings',pct:0,color:'#e8a4c8',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:28}]},
-      {id:'ph4d',type:'prod',label:'Launch Week',desc:'',pct:0,color:'#f0a898',fontColor:'',bold:false,italic:false,underline:false,
+        segs:[{id:'s4c1',start:'2026-03-23',end:'2026-04-10',label:'Analyst Briefings',color:'#e8a4c8'}]},
+      {id:'ph4d',type:'prod',label:'Launch Week',color:'#f0a898',
         start:'2026-04-20',end:'2026-04-30',
-        segs:[{id:'s4d1',start:'2026-04-20',end:'2026-04-30',label:'🚀 Launch',pct:0,color:'#f0a898',fontColor:'#3a0a00',bold:true,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:32}]},
+        segs:[{id:'s4d1',start:'2026-04-20',end:'2026-04-30',label:'🚀 Launch',color:'#f0a898',fontColor:'#3a0a00',bold:true,barH:32}]},
     ],
     milestones:[
-      {id:'m4a',date:'2026-02-27',mtype:'checkpoint',mshape:'triangle',label:'Creative Approved',desc:'',color:'',fontColor:'',bold:false,italic:false,underline:false,dx:0,dy:null,ldx:null,ldy:null,lw:0,snapPhase:null},
-      {id:'m4b',date:'2026-04-20',mtype:'kickoff',mshape:'flag',label:'Launch Day',desc:'',color:'#f0a898',fontColor:'#3a0a00',bold:true,italic:false,underline:false,dx:0,dy:null,ldx:null,ldy:null,lw:0,snapPhase:null},
+      {id:'m4a',date:'2026-02-27',mtype:'checkpoint',mshape:'triangle',label:'Creative Approved'},
+      {id:'m4b',date:'2026-04-20',mtype:'kickoff',mshape:'flag',label:'Launch Day',color:'#f0a898',fontColor:'#3a0a00',bold:true},
     ]},
 
   /* ── People / Resource Planning ── */
-  {id:'p5',name:'Engineering Team Allocation',fontColor:'#a78bfa',bold:true,italic:false,underline:false,
+  {id:'p5',name:'Engineering Team Allocation',fontColor:'#a78bfa',bold:true,
     phases:[
-      {id:'ph5a',type:'dev',label:'Priya Nair – Full-Stack Lead',desc:'iOS & Platform',pct:0,color:'#f9c6d0',fontColor:'',bold:false,italic:true,underline:false,
+      {id:'ph5a',type:'dev',label:'Priya Nair – Full-Stack Lead',desc:'iOS & Platform',color:'#f9c6d0',italic:true,
         start:'2026-01-05',end:'2026-04-30',
         segs:[
-          {id:'s5a1',start:'2026-01-12',end:'2026-02-13',label:'Mobile iOS (100%)',pct:0,color:'#f9c6d0',fontColor:'#6a0020',bold:true,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:30},
-          {id:'s5a2',start:'2026-02-16',end:'2026-03-27',label:'Mobile iOS + Platform (80/20)',pct:0,color:'#f5a0b5',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:30},
-          {id:'s5a3',start:'2026-03-30',end:'2026-04-30',label:'Platform (100%)',pct:0,color:'#c9b8f0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:30}
+          {id:'s5a1',start:'2026-01-12',end:'2026-02-13',label:'Mobile iOS (100%)',color:'#f9c6d0',fontColor:'#6a0020',bold:true,barH:30},
+          {id:'s5a2',start:'2026-02-16',end:'2026-03-27',label:'Mobile iOS + Platform (80/20)',color:'#f5a0b5',barH:30},
+          {id:'s5a3',start:'2026-03-30',end:'2026-04-30',label:'Platform (100%)',color:'#c9b8f0',barH:30}
         ]},
-      {id:'ph5b',type:'dev',label:'Tom Chen – Backend Engineer',desc:'Core API & DW',pct:0,color:'#a0d0f5',fontColor:'',bold:false,italic:true,underline:false,
+      {id:'ph5b',type:'dev',label:'Tom Chen – Backend Engineer',desc:'Core API & DW',color:'#a0d0f5',italic:true,
         start:'2026-01-19',end:'2026-04-30',
         segs:[
-          {id:'s5b1',start:'2026-01-26',end:'2026-02-27',label:'Platform API (100%)',pct:0,color:'#a0d0f5',fontColor:'#0d3460',bold:true,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:30},
-          {id:'s5b2',start:'2026-02-02',end:'2026-03-13',label:'DW ETL (50%)',pct:0,color:'#90c8e8',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:1,barH:30},
-          {id:'s5b3',start:'2026-03-16',end:'2026-04-17',label:'Platform Go-Live Support (100%)',pct:0,color:'#a0d0f5',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:30}
+          {id:'s5b1',start:'2026-01-26',end:'2026-02-27',label:'Platform API (100%)',color:'#a0d0f5',fontColor:'#0d3460',bold:true,barH:30},
+          {id:'s5b2',start:'2026-02-02',end:'2026-03-13',label:'DW ETL (50%)',color:'#90c8e8',lane:1,barH:30},
+          {id:'s5b3',start:'2026-03-16',end:'2026-04-17',label:'Platform Go-Live Support (100%)',color:'#a0d0f5',barH:30}
         ]},
-      {id:'ph5c',type:'qa',label:'Aisha Mohammed – QA Lead',desc:'Testing across all workstreams',pct:0,color:'#88e0c0',fontColor:'',bold:false,italic:true,underline:false,
+      {id:'ph5c',type:'qa',label:'Aisha Mohammed – QA Lead',desc:'Testing across all workstreams',color:'#88e0c0',italic:true,
         start:'2026-02-09',end:'2026-04-17',
         segs:[
-          {id:'s5c1',start:'2026-02-23',end:'2026-03-13',label:'Platform Integration QA (100%)',pct:0,color:'#88e0c0',fontColor:'#0a3d2a',bold:true,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:30},
-          {id:'s5c2',start:'2026-03-16',end:'2026-04-03',label:'Mobile QA (100%)',pct:0,color:'#80d8d0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:30},
-          {id:'s5c3',start:'2026-03-23',end:'2026-04-17',label:'DW Validation (50%)',pct:0,color:'#a8e4b0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:1,barH:30}
+          {id:'s5c1',start:'2026-02-23',end:'2026-03-13',label:'Platform Integration QA (100%)',color:'#88e0c0',fontColor:'#0a3d2a',bold:true,barH:30},
+          {id:'s5c2',start:'2026-03-16',end:'2026-04-03',label:'Mobile QA (100%)',color:'#80d8d0',barH:30},
+          {id:'s5c3',start:'2026-03-23',end:'2026-04-17',label:'DW Validation (50%)',color:'#a8e4b0',lane:1,barH:30}
         ]},
-      {id:'ph5d',type:'uat',label:'Dev Kumar – Data Engineer',desc:'DW & Analytics',pct:0,color:'#f0e098',fontColor:'',bold:false,italic:true,underline:false,
+      {id:'ph5d',type:'uat',label:'Dev Kumar – Data Engineer',desc:'DW & Analytics',color:'#f0e098',italic:true,
         start:'2026-01-05',end:'2026-04-30',
         segs:[
-          {id:'s5d1',start:'2026-01-05',end:'2026-01-30',label:'Schema Analysis (100%)',pct:0,color:'#f0e098',fontColor:'#4a3a00',bold:true,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:30},
-          {id:'s5d2',start:'2026-02-02',end:'2026-03-27',label:'ETL Pipeline (100%)',pct:0,color:'#f8d888',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:30},
-          {id:'s5d3',start:'2026-03-23',end:'2026-04-30',label:'Validation & Cutover (100%)',pct:0,color:'#f0e098',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:30}
+          {id:'s5d1',start:'2026-01-05',end:'2026-01-30',label:'Schema Analysis (100%)',color:'#f0e098',fontColor:'#4a3a00',bold:true,barH:30},
+          {id:'s5d2',start:'2026-02-02',end:'2026-03-27',label:'ETL Pipeline (100%)',color:'#f8d888',barH:30},
+          {id:'s5d3',start:'2026-03-23',end:'2026-04-30',label:'Validation & Cutover (100%)',color:'#f0e098',barH:30}
         ]},
-      {id:'ph5e',type:'hold',label:'Sara Johansson – UX Designer',desc:'Design & brand',pct:0,color:'#e8a4c8',fontColor:'',bold:false,italic:true,underline:false,
+      {id:'ph5e',type:'hold',label:'Sara Johansson – UX Designer',desc:'Design & brand',color:'#e8a4c8',italic:true,
         start:'2026-01-12',end:'2026-03-20',
         segs:[
-          {id:'s5e1',start:'2026-01-12',end:'2026-02-06',label:'Brand & Style Guide (100%)',pct:0,color:'#e8a4c8',fontColor:'#4a0d4a',bold:true,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:0,barH:30},
-          {id:'s5e2',start:'2026-01-19',end:'2026-02-27',label:'Mobile UX (60%)',pct:0,color:'#d4a0e0',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:1,barH:30},
-          {id:'s5e3',start:'2026-02-09',end:'2026-03-20',label:'Landing Pages UX (80%)',pct:0,color:'#c8a8d8',fontColor:'',bold:false,italic:false,underline:false,hAlign:'center',vAlign:'center',lane:2,barH:30}
+          {id:'s5e1',start:'2026-01-12',end:'2026-02-06',label:'Brand & Style Guide (100%)',color:'#e8a4c8',fontColor:'#4a0d4a',bold:true,barH:30},
+          {id:'s5e2',start:'2026-01-19',end:'2026-02-27',label:'Mobile UX (60%)',color:'#d4a0e0',lane:1,barH:30},
+          {id:'s5e3',start:'2026-02-09',end:'2026-03-20',label:'Landing Pages UX (80%)',color:'#c8a8d8',lane:2,barH:30}
         ]},
     ],
     milestones:[
-      {id:'m5a',date:'2026-02-13',mtype:'review',mshape:'pin',label:'Capacity Review',desc:'',color:'#a78bfa',fontColor:'',bold:false,italic:false,underline:false,dx:0,dy:null,ldx:null,ldy:null,lw:0,snapPhase:null},
-      {id:'m5b',date:'2026-04-01',mtype:'checkpoint',mshape:'circle',label:'Q2 Replan',desc:'',color:'#a78bfa',fontColor:'',bold:true,italic:false,underline:false,dx:0,dy:null,ldx:null,ldy:null,lw:0,snapPhase:null},
+      {id:'m5a',date:'2026-02-13',mtype:'review',mshape:'pin',label:'Capacity Review',color:'#a78bfa'},
+      {id:'m5b',date:'2026-04-01',mtype:'checkpoint',mshape:'circle',label:'Q2 Replan',color:'#a78bfa',bold:true},
     ]},
   ]};
 
@@ -1187,23 +1187,6 @@ const MS_SHAPES={
   pin:     {lbl:'Pin 📍',     render:(sz,col,bd)=>h('svg',{width:sz,height:sz,viewBox:'0 0 20 20'},h('circle',{cx:10,cy:7,r:6,fill:col,stroke:bd,strokeWidth:1.5}),h('line',{x1:10,y1:13,x2:10,y2:19,stroke:bd,strokeWidth:2}))},
   hexagon: {lbl:'Hexagon ⬡',  render:(sz,col,bd)=>h('svg',{width:sz,height:sz,viewBox:'0 0 20 20'},h('polygon',{points:'10,1 18.7,5.5 18.7,14.5 10,19 1.3,14.5 1.3,5.5',fill:col,stroke:bd,strokeWidth:1.5}))},
 };
-
-/* ── data migration helper ── */
-function migrateData(d){
-  if(!d.deps)d.deps=[];
-  (d.projects||[]).forEach(p=>(p.phases||[]).forEach(ph=>{
-    if(!ph.segs)ph.segs=[];
-    if(ph.segs.length===0&&ph.start&&ph.end){
-      ph.segs=[{id:uid(),start:ph.start,end:ph.end,
-        label:ph.label||'',pct:ph.pct||0,color:'',fontColor:'#000000',hAlign:'center',vAlign:'center'}];
-    }
-    const vs=(ph.segs||[]).filter(s=>s.start&&s.end);
-    if(vs.length>0){
-      ph.start=vs.map(s=>s.start).reduce((a,b)=>a<b?a:b);
-      ph.end  =vs.map(s=>s.end).reduce((a,b)=>a>b?a:b);
-    }
-  }));
-}
 
 /* ── cascade helper — shift dependents when a segment moves ── */
 function addDays(dateStr,days){
